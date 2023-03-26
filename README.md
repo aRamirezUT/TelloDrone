@@ -35,6 +35,9 @@ The following keyboard inputs are used to control the drone:
 
 TelloDrone saves a screenshot of the drone's live video feed at an interval of 1/4th of a milisecond. These images are saved in the "images" folder in the same directory as the code.
 
+# Images
+We store the images and models at https://github.com/aRamirezUT/TelloDroneImagesRepo
+
 # Troubleshooting
 
     If the drone feed does not display, check that the drone is connected correctly and that the OpenCV library is installed properly.
