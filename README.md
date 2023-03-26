@@ -5,7 +5,7 @@ TelloDrone is a program that allows you to control a drone using keyboard inputs
 
     OpenCV 2.4 or higher
     telloc.h (included in the code)
-    A SFM or Photogrammatry app, we used "3D Zephyr"
+    A SFM or Photogrammatry app, we used "3DF Zephyr"
 
 # Running the code
 
