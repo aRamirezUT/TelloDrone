@@ -5,6 +5,7 @@ extern "C" {
 #include "telloc.h"
 }
 using namespace cv;
+
 int main() {
 
 // Create a VideoCapture object to capture video from the default camera (index 0)
@@ -36,24 +37,20 @@ int main() {
         printf("State: %s\n", state);
     }
 
-    unsigned int i =0;
+    unsigned long i = 0;
+    unsigned int long imgCount = 0;
+    char *fileName = (char*)malloc(TELLOC_STATE_SIZE);
 
     while (true)
     {
-        // printf("entering while loop");
-        // Capture frame-by-frame
-        // Mat frame;
-        // cap.read(frame);
+        
         int ret_video = telloc_read_image(connection, image, TELLOC_VIDEO_SIZE, &image_bytes, &image_width, &image_height);
-        if (ret_video==0)
+        if (ret_video !=0)
         {
-            // printf("Image: %d bytes; %d x %d\n", image_bytes, image_width, image_height);
-        }
-
-        else {
             continue;
         }
-        // printf("Just read from drone");
+        
+        // convert the image from the drone into cv
         auto frame = cv::Mat((int) image_height, (int) image_width, CV_8UC3, image);
         cv::cvtColor(frame, frame, cv::COLOR_RGB2BGR);
 
@@ -64,23 +61,32 @@ int main() {
         // Display the resulting frame
         imshow("Drone Feed", frame);
 
-        // Wait for 1 millisecond and check for user input to exit
-        // if (waitKey(1) == 'q')
-        //     break;
-
-        if (i%16 != 0)
+        // Wait for 1/4 of 5 miliseconds and save a screenshot of the video image
+        i+=1;
+        if (i%4 != 0)
             {
+                // printf("waitket 100; i  is %d\n",i);
                 waitKey(5);
-                i+=1;
                 continue;
             }
-        // printf("continuing");
+
+        snprintf(fileName, TELLOC_STATE_SIZE, "%s%d%s", "images/img_", imgCount, ".jpg");
+        imwrite(fileName, frame);
+        imgCount += 1;
+
+        // wait additional 1/16 of 5 miliseconds for input
+        if (i%16 != 0)
+        {
+            // printf("waitket 100; i  is %d\n",i);
+            waitKey(5);
+            continue;
+        }
         int ch = waitKey(1);
         if (ch == 27) // emergency stop w/ [esc]
         {
             break;
         }
-        // printf("switch statement:%d ", ch);
+        
         switch (ch) 
         {
             case 'g':
@@ -123,18 +129,14 @@ int main() {
                 waitKey(30);
                 exit(1);
             default:
-                continue;
+                break;
 
             }
-
-            // send command here
-            printf("command: %s\n", command);
-
+            // send the inputted key to the drone
             ret_command = telloc_send_command(connection, command, strlen(command), response, TELLOC_STATE_SIZE);
             if(ret_command == 0 && response != NULL) {
                printf("Response was %s\n", response);
             }
-        i+=1;   
     }
 
     // Release the VideoCapture object and close all windows
@@ -143,23 +145,3 @@ int main() {
 
     return 0;
 }
-
-
-
-    // // Read an image from file
-    // cv::Mat image = cv::imread("C:\\Users\\Shado\\OneDrive\\Documents\\drone.png");
-
-    // // Check if the image was loaded successfully
-    // if (image.empty()) {
-    //     std::cout << "Error: Could not read the image file" << std::endl;
-    //     return 1;
-    // }
-
-    // // Create a window to display the image
-    // cv::namedWindow("Display Image", cv::WINDOW_AUTOSIZE);
-
-    // // Show the image in the window
-    // cv::imshow("Display Image", image);
-
-    // // Wait for a key press and then close the window
-    // cv::waitKey(0);
