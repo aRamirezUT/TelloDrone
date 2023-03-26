@@ -1,0 +1,10 @@
+*.lib
+*.pyd
+*.exp
+*.dll
+*.exe
+*.obj
+*.o
+*.so
+__pycache*/
+*.egg-*/
