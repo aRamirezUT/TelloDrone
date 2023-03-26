@@ -1,0 +1,25 @@
+Starting openMVG calculations
+=============================
+Config settings
+describerPreset: HIGH
+recon_ext: bin
+********************************************************************
+10:09:33 : openMVG_main_SfMInit_ImageListing
+openMGVopenMVGbuildWindows-AMD64-Release/openMVG_main_SfMInit_ImageListing -i /c/Users/brand/Documents/GitHub/TelloDrone\Users\brand\Documents\GitHub\TelloDrone\images -o SfM/matches -d openMGVopenMVGsrcopenMVGexifsensor_width_database/sensor_width_camera_database.txt
+********************************************************************
+10:09:33 : openMVG_main_ComputeFeatures
+openMGVopenMVGbuildWindows-AMD64-Release/openMVG_main_ComputeFeatures -i SfM/matches/sfm_data.json -o SfM/matches --describerPreset HIGH
+********************************************************************
+10:09:33 : openMVG_main_ComputeMatches
+openMGVopenMVGbuildWindows-AMD64-Release/openMVG_main_ComputeMatches -i SfM/matches/sfm_data.json -o SfM/matches -g e
+********************************************************************
+10:09:34 : openMVG_main_GlobalSfM
+openMGVopenMVGbuildWindows-AMD64-Release/openMVG_main_GlobalSfM -i SfM/matches/sfm_data.json -m SfM/matches -o SfM/reconstruction/global
+********************************************************************
+10:09:34 : openMVG_main_ComputeSfM_DataColor
+openMGVopenMVGbuildWindows-AMD64-Release/openMVG_main_ComputeSfM_DataColor -i SfM/reconstruction/global/sfm_data.bin -o SfM/reconstruction/global/colorized.ply
+********************************************************************
+10:09:34 : openMVG_main_openMVG2MVE2
+openMGVopenMVGbuildWindows-AMD64-Release/openMVG_main_openMVG2MVE2 -i SfM/reconstruction/global/sfm_data.bin -o SfM/reconstruction/dense
+********************************************************************
+10:09:34 : End
