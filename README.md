@@ -1,6 +1,8 @@
 # TelloDrone: Into the Unknown 🤖🚀
 TelloDrone is a program that allows you to control a drone using keyboard inputs and view its live video feed. The drone used in this code is connected via a telloc_connection, and OpenCV library is used to capture and display the video feed. Afterwards you can take the screenshots of the live video and feed it into a Photogrammatry or Structure From Motion (SFM) application to create a mapping of your 'Unknown Environment'
 
+# Winner of University of Texas at San Antonio RowdyHacks 2023 General Track
+
 # Dependencies
 
     OpenCV 2.4 or higher
@@ -43,7 +45,6 @@ We store the images and models at https://github.com/aRamirezUT/TelloDroneImages
     If the drone feed does not display, check that the drone is connected correctly and that the OpenCV library is installed properly.
     If there are issues with controlling the drone or receiving a response, check the connection with the drone and the telloc_connection.
     
-# Winner of University of Texas at San Antonio RowdyHacks 2023 General Track
 
 # License
 The Unlicense
