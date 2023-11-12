@@ -1,7 +1,7 @@
+# Winner of University of Texas at San Antonio RowdyHacks 2023 General Track
+
 # TelloDrone: Into the Unknown 🤖🚀
 TelloDrone is a program that allows you to control a drone using keyboard inputs and view its live video feed. The drone used in this code is connected via a telloc_connection, and OpenCV library is used to capture and display the video feed. Afterwards you can take the screenshots of the live video and feed it into a Photogrammatry or Structure From Motion (SFM) application to create a mapping of your 'Unknown Environment'
-
-# Winner of University of Texas at San Antonio RowdyHacks 2023 General Track
 
 # Dependencies
 
